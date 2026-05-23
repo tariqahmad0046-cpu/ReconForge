@@ -1,13 +1,15 @@
-# 🔥 Bug Bounty Recon Pipeline
+# 🔥 ReconForge - Bug Bounty Recon Automation Toolkit
 
 ## 📌 Overview
-This project automates bug bounty reconnaissance using Linux tools.
+ReconForge is a Linux-based bug bounty reconnaissance automation toolkit that helps security researchers discover:
 
-It helps discover:
 - Subdomains
 - Live hosts
 - Hidden URLs
 - Hidden directories
+- Basic web server vulnerabilities
+
+It combines passive + active recon techniques using popular security tools.
 
 ---
 
@@ -17,12 +19,14 @@ It helps discover:
 - httpx
 - waybackurls
 - ffuf
+- nikto
 
 ---
 
 ## 📁 Project Structure
 
-Bug-Bounty-Recon-Pipeline/
+```
+ReconForge/
 │
 ├── recon.sh
 ├── README.md
@@ -33,15 +37,16 @@ Bug-Bounty-Recon-Pipeline/
 │   ├── live.txt
 │   ├── urls.txt
 │   ├── dirs.txt
+│   ├── nikto.txt
 │
 └── screenshots/
+```
 
 ---
 
 ## ⚙️ Installation
 
 ### Install Go tools
-
 ```bash
 sudo apt install golang
 ```
@@ -49,7 +54,6 @@ sudo apt install golang
 ---
 
 ### Install subfinder
-
 ```bash
 go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 ```
@@ -57,7 +61,6 @@ go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 ---
 
 ### Install httpx
-
 ```bash
 go install github.com/projectdiscovery/httpx/cmd/httpx@latest
 ```
@@ -65,7 +68,6 @@ go install github.com/projectdiscovery/httpx/cmd/httpx@latest
 ---
 
 ### Install waybackurls
-
 ```bash
 go install github.com/tomnomnom/waybackurls@latest
 ```
@@ -73,9 +75,15 @@ go install github.com/tomnomnom/waybackurls@latest
 ---
 
 ### Install ffuf
-
 ```bash
 go install github.com/ffuf/ffuf@latest
+```
+
+---
+
+### Install nikto
+```bash
+sudo apt install nikto
 ```
 
 ---
@@ -87,7 +95,7 @@ chmod +x recon.sh
 ./recon.sh
 ```
 
-Enter target:
+Enter target domain:
 
 ```text
 example.com
@@ -95,14 +103,47 @@ example.com
 
 ---
 
-## 📌 Output Files
+## 🔥 Workflow Steps
 
-| File | Description |
-|------|------------|
-| subdomains.txt | Found subdomains |
-| live.txt | Active websites |
-| urls.txt | Historical URLs |
-| dirs.txt | Hidden directories |
+1. Subdomain Enumeration (subfinder)
+2. Live Host Detection (httpx)
+3. Historical URL Collection (waybackurls)
+4. Directory Fuzzing (ffuf)
+5. Web Server Scan (nikto)
+
+---
+
+## 📌 Nikto Usage
+
+Nikto scans web servers for:
+
+- misconfigurations
+- outdated software
+- exposed files
+- security issues
+
+Example:
+
+```bash
+nikto -h https://example.com -o output/nikto.txt
+```
+
+---
+
+## 📸 Screenshots
+
+Take screenshots of:
+
+- Subdomain scan
+- Live host results
+- ffuf scan
+- nikto scan output
+
+Save inside:
+
+```
+screenshots/
+```
 
 ---
 
@@ -110,14 +151,16 @@ example.com
 
 - Bug bounty reconnaissance
 - Asset discovery
-- Automation in Linux
-- Web enumeration workflow
+- Web enumeration
+- Vulnerability scanning basics
+- Linux automation
 
 ---
 
 ## ⚠️ Disclaimer
 
-Only use on authorized targets and bug bounty programs.
+This tool is for educational and authorized security testing only.
+Do not use on systems without permission.
 
 ---
 
