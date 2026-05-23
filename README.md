@@ -106,23 +106,6 @@ example.com
 
 ---
 
-## 📸 Screenshots Required
-
-Take screenshots of:
-
-- Subfinder results
-- Live hosts (httpx)
-- Wayback URLs
-- ffuf scan
-
-Save in:
-
-```
-screenshots/
-```
-
----
-
 ## 🧠 Skills Learned
 
 - Bug bounty reconnaissance
